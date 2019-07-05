@@ -6,4 +6,5 @@ formatting my laptops in order to keep some useful modifications.
 ```bash
 cp bash ${HOME}/.bashrc
 cp vim  ${HOME}/.vimrc
+cp syntax ${HOME}/.vim -rv
 ```
