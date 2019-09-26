@@ -59,7 +59,7 @@ fi
 # https://unix.stackexchange.com/questions/216953/show-only-current-and-parent-directory-in-bash-prompt
 if [ "$color_prompt" = yes ]; then
     #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] [\[\033[01;34m\]\W\[\033[00m\]]$(__git_ps1 " (%s)") \$ '
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\] \A [\[\033[01;34m\]${PWD#"${PWD%/*/*}/"}\[\033[00m\]]$(__git_ps1 \[\033[93m\033[1m"(%s)"\033[0m\]) \$ '
+    PS1='${debian_chroot:+($debian_chroot)}[\[\033[01;32m\]\u\[\033[00m\]@\[\033[01;91m\]\h\[\033[00m\] \A] \[\033[01;34m\]${PWD#"${PWD%/*/*}/"}\[\033[00m\] \$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -128,14 +128,3 @@ alias lmake=make
 
 tabs -4
 
-export PATH=$PATH:/usr/local/MATLAB/bin:/home/cassio/Downloads/htk/bin.cpu
-source ${HOME}/.git-prompt.sh
-
-export PATH=$PATH:/usr/local/go/bin:/opt/Rambox
-export JDK_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
-export JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64"
-export LD_LIBRARY_PATH=$JDK_HOME/jre/lib/server:$LD_LIBRARY_PATH
-
-# https://github.com/ariya/phantomjs/issues/14377
-export QT_PLUGIN_PATH="/usr/lib/x86_64-linux-gnu/qt5/plugins/"
-export QT_QPA_PLATFORM=""
