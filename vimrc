@@ -129,13 +129,13 @@ set foldlevelstart=20
 " quando fizer alguma alteração do .vimrc basta apertar a tecla <F12>
 nmap <F12> :<C-u>source $HOME/.vimrc <BAR> echo "Vimrc recarregado!"<CR>
 
-set colorcolumn=81
-set textwidth=80
+set colorcolumn=80
+set textwidth=79
 set shiftwidth=4
 "set autoindent
 hi Comment ctermfg=cyan  guifg=cyan cterm=NONE
 
-au FileType markdown call SyntaxRange#Include('<!--begin=html-->','<!--end=html-->','html')
+"au FileType markdown call SyntaxRange#Include('<!--begin=html-->','<!--end=html-->','html')
 
 au BufNewFile,BufRead *.textgrid set ft=praat syntax=praat
 au BufNewFile,BufRead *.TextGrid set ft=praat syntax=praat
@@ -145,9 +145,11 @@ au BufNewFile,BufRead *.csv set tw=0
 
 au BufNewFile,BufRead *.vtt set ft=vtt syntax=vtt
 
-au BufNewFile,BufRead *.tex set autoindent 
+au BufNewFile,BufRead *.tex set autoindent spell
+au bufnewfile,bufread *.tex syntax spell toplevel
 
 au BufNewFile,BufRead *.ts set ft=typescript syntax=typescript
+au BufNewFile,BufRead *.toml set ft=toml syntax=toml
 
 if &diff
 	set colorcolumn=0
