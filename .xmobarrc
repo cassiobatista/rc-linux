@@ -1,8 +1,10 @@
 Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
        , bgColor = "black"
        , fgColor = "grey"
-       , position = TopW L 90
-       , commands = [ Run Weather "SBBE" ["-t","<station> <tempC>C",
+       , position = TopW L 99
+       , commands = [ Run StdinReader
+                    , Run Locks
+                    , Run Weather "SBBE" ["-t","<tempC>C <windMs>m/s <skyCondition>",
                                           "-L","64",
                                           "-H","77",
                                           "--normal","green",
@@ -15,7 +17,10 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                                            "--low","red",
                                            "--normal","yellow",
                                            "--high","green"] 12
-                    , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+                    , Run Cpu ["-L","3",
+                               "-H","50",
+                               "--normal","green",
+                               "--high","red"] 10
                     , Run Memory ["-t","Mem: <usedratio>% <usedbar>",
                                   "--low","green",
                                   "--normal","yellow",
@@ -29,17 +34,20 @@ Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
                                     "-i", "",
                                     "-L", "-15",
                                     "-H", "-5",
-                                    "-l", "darkgrey",
-                                    "-m", "white",
-                                    "-h", "grey"]
-                                    100
-                    , Run Locks
+                                    "-l", "red",
+                                    "-m", "yellow",
+                                    "-h", "white"] 100
+                    , Run Volume "default" "Master" ["-t","Vol: <volume>% <volumebar>",
+                                                     "-H","80",
+                                                     "-L","15",
+                                                     "--low","lightblue",
+                                                     "--normal","grey",
+                                                     "--high","red"] 20
                     , Run Brightness ["-t","Bright: <percent>%", 
-                                      "--", "-D","intel_backlight"] 60
+                                      "--", "-D","intel_backlight"] 15
                     , Run Date "%a %d %b %T (%U)" "date" 10
-                    , Run StdinReader
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%StdinReader% }{ [%locks%] | %cpu% | %memory% | %wlo1% %wlo1wi% | %battery% | %bright% | <fc=#ee9a00>%date%</fc> | %SBBE%"
+       , template = "%StdinReader% }{ [%locks%] | %cpu% | %memory% | %wlo1% %wlo1wi% | %battery% | %bright% | <fc=#ee9a00>%date%</fc> | %default:Master% | %SBBE% | Cassio Batista"
        }
