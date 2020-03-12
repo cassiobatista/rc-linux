@@ -1,0 +1,57 @@
+Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
+       , bgColor = "black"
+       , fgColor = "grey"
+       , position = TopW L 99
+       , commands = [ Run StdinReader
+                    , Run Locks
+                    , Run MultiCpu ["-t", "CPU: <total0>% <total1>% <total2>% <total3>%",
+                               "-L","3",
+                               "-H","50",
+                               "--normal","green",
+                               "--high","red"] 10
+                    , Run Memory ["-t","RAM: <usedratio>% <usedbar>",
+                                  "-L", "1000",
+                                  "-H", "10000",
+                                  "--low","green",
+                                  "--normal","yellow",
+                                  "--high","red"] 10
+                    , Run DynNetwork ["-t","<dev>: <rx>kB/s <tx>kB/s",
+                                      "-L","50000",  -- in bytes per sec
+                                      "-H","900000", -- in bytes per sec
+                                      "--low","green",
+                                      "--normal","yellow",
+                                      "--high","red"] 12
+                    , Run Brightness ["-t","Bright: <percent>%", 
+                                      "--", "-D","intel_backlight"] 15
+                    , Run Volume "default" "Master" ["-t","Vol: <volume>% <volumebar>",
+                                                     "-H","80",
+                                                     "-L","15",
+                                                     "--low","lightblue",
+                                                     "--normal","grey",
+                                                     "--high","red"] 20
+                    , Run Weather "SBBE" ["-t","<tempC>C <windKmh>km/h <skyCondition>",
+                                          "-L","64",
+                                          "-H","77",
+                                          "--normal","green",
+                                          "--high","red",
+                                          "--low","lightblue"] 18000
+                    , Run Date "%a %d %b %T (%V)" "date" 10
+                    , Run BatteryP ["BAT0"]
+                                    ["-t", "Bat: <acstatus><left>% (<timeleft>)",
+                                    "-L", "10",
+                                    "-H", "80",
+                                    "-p", "3",
+                                    "--", 
+                                    "-i", "",
+                                    "-L", "-15",
+                                    "-H", "-5",
+                                    "-a", "notify-send -u 'Battery extremely low'",
+                                    "-A", "8",
+                                    "-l", "red",
+                                    "-m", "yellow",
+                                    "-h", "white"] 100
+                    ]
+       , sepChar = "%"
+       , alignSep = "}{"
+       , template = "%StdinReader% }{ [%locks%] | %multicpu% | %memory% | %dynnetwork% | %bright% | %default:Master% | %SBBE% | <fc=#ee9a00>%date%</fc> | %battery%"
+       }
