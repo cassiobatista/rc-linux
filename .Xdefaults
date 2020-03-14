@@ -16,6 +16,9 @@
 !URxvt*color14: #00FFFF // cyan
 !URxvt*color15: #FFFFFF // white
 
+XTerm*background:  Black
+XTerm*foreground:  White
+
 URxvt*depth:       32
 URxvt*background:  Black
 URxvt*foreground:  White
