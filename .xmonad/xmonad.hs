@@ -18,11 +18,11 @@ main = do
                                 -- , ppHiddenNoWindows = xmobarColor "grey" ""
                                 }
         , modMask = mod4Mask
-        , terminal = "urxvt"
+        , terminal = "urxvt -e tmux"
         , borderWidth = 2
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")
-        , ((0, xK_Print), spawn "scrot /tmp/00.png")                       -- screenshot
+        , ((0, xK_Print), spawn "scrot /tmp/00.png -o")                    -- screenshot
         , ((0, 0x1008FF11), spawn "amixer -q set Master 5%-")              -- XF86XK_AudioLowerVolume 
         , ((0, 0x1008FF12), spawn "amixer -q -D pulse set Master toggle")  -- XF86XK_AudioMute        
         , ((0, 0x1008FF13), spawn "amixer -q set Master 5%+")              -- XF86XK_AudioRaiseVolume 
