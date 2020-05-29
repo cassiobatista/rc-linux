@@ -24,7 +24,6 @@ syntax on
 
 set viminfo='10,\"30,:20,%,n~/.viminfo
 au BufReadPost * if line("'\"")|execute("normal `\"")|endif
-au! Syntax php3 so ~/.php3.vim
 
 set list lcs=tab:.\ ,trail:\ ,extends:>,precedes:< 
 
@@ -50,7 +49,6 @@ map ,d :r!date<cr>
 " desmarcar, LEMBRAR O GMAIL
 map 8n :nohl<cr>
 
-
 fu! CommOnOff()
   if !exists('g:hiddcomm')
     let g:hiddcomm=1 | hi Comment ctermfg=black guifg=black
@@ -63,13 +61,13 @@ map <F6> :call CommOnOff()<cr>
 hi    Search ctermbg=green ctermfg=black
 hi IncSearch ctermbg=black ctermfg=cyan
 
-set is hls scs  "opções espertas de busca
-set sm             "oninício do bloco recém fechado
-set sw=4           "ShiftWidth: número de colunas para o comando >
-set ruler          "régua: mostra a posição do cursor
-set shm=filmnrwxt  "SHortMessages: encurta as mensagem da régua
+set is hls scs             "opções espertas de busca
+set sm                     "início do bloco recém fechado
+set sw=4                   "ShiftWidth: número de colunas para o comando >
+set ruler                  "régua: mostra a posição do cursor
+set shm=filmnrwxt          "ShortMessages: encurta as mensagem da régua
 set wildmode=longest,list  "para completação do TAB igual ao bash
-set number         "para mostrar o numero ao lado
+set number         	   "para mostrar o numero ao lado
 set title
 " barra de status
 set statusline=%F%m%r%h%w\ [%Y][%l,%v][%p%%][%L]
@@ -78,6 +76,11 @@ set laststatus=2
 set cursorline		"mostra a linha do cursor
 set sm
 set tabstop=4
+set foldlevelstart=20
+set colorcolumn=80
+set tw=79
+"set autoindent
+hi Comment ctermfg=cyan  guifg=cyan cterm=NONE
 
 "highlight CursorColumn ctermbg=white
 hi CursorColumn ctermfg=Grey ctermbg=Grey cterm=underline guifg=white guibg=yellow gui=underline
@@ -101,10 +104,10 @@ syn on
 " ft (FileType)  ao abrir um arquivo novo  (BufNewFile)  ou já existente
 " (BufRead) com essa extensão.
 "
-au BufNewFile,BufRead *.conf set ft=conf
-au BufNewFile,BufRead *.xyz set ft=html
-au BufNewFile,BufRead *.ino set ft=arduino
-au BufNewFile,BufRead *.cls set ft=tex
+au BufNewFile,BufRead *.conf   set ft=conf
+au BufNewFile,BufRead *.xyz    set ft=html
+au BufNewFile,BufRead *.ino    set ft=arduino
+au BufNewFile,BufRead *.cls    set ft=tex
 au BufNewFile,BufRead *.launch set ft=xml
 " ou ainda,  se for um arquivo  de um tipo  já reconhecido pelo vim, use
 " diretamente a opção FileType. vamos usar de exemplo a linguagem python
@@ -121,19 +124,8 @@ au FileType python set ts=4 shiftwidth=4 tw=80 "noet expandtab " FIXME
 au FileType python set foldmethod=indent foldnestmax=6 autoindent
 au FileType python hi pythonString ctermfg=darkgreen
 
-au FileType html set textwidth=0 autoindent tabstop=2
+au FileType html set autoindent tw=0 ts=2 sw=2
 au FileType bib  set textwidth=0
-
-set foldlevelstart=20
-"Recarrega o vim
-" quando fizer alguma alteração do .vimrc basta apertar a tecla <F12>
-nmap <F12> :<C-u>source $HOME/.vimrc <BAR> echo "Vimrc recarregado!"<CR>
-
-set colorcolumn=80
-set textwidth=79
-set shiftwidth=4
-"set autoindent
-hi Comment ctermfg=cyan  guifg=cyan cterm=NONE
 
 "au FileType markdown call SyntaxRange#Include('<!--begin=html-->','<!--end=html-->','html')
 
@@ -152,7 +144,29 @@ au BufNewFile,BufRead *.ts set ft=typescript syntax=typescript
 au BufNewFile,BufRead *.toml set ft=toml syntax=toml
 
 if &diff
-	set colorcolumn=0
+    set colorcolumn=0
 endif
 
 set expandtab
+
+" https://superuser.com/questions/208177/vim-and-tex-filetypes-plaintex-vs-tex
+let g:tex_flavor = "latex"
+
+" https://vi.stackexchange.com/questions/5851/how-to-disable-arrow-keys-in-vim
+noremap  <Left> :echo "no left for you"<CR>
+vnoremap <Left> :<C-u>echo "no left for you"<CR>
+inoremap <Left> <C-o>:echo "no left for you"<CR>
+
+noremap  <Right> :echo "no right for you"<CR>
+vnoremap <Right> :<C-u>echo "no right for you"<CR>
+inoremap <Right> <C-o>:echo "no right for you"<CR>
+
+noremap  <Up> :echo "no up for you"<CR>
+vnoremap <Up> :<C-u>echo "no up for you"<CR>
+inoremap <Up> <C-o>:echo "no up for you"<CR>
+
+noremap  <Down> :echo "no down for you"<CR>
+vnoremap <Down> :<C-u>echo "no down for you"<CR>
+inoremap <Down> <C-o>:echo "no down for you"<CR>
+
+set diffopt+=iwhite
