@@ -8,10 +8,15 @@ call vundle#begin('~/.config/.nvim/bundle')
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+
 Plugin 'Yggdroot/indentLine'
-let g:tex_conceal='' " https://github.com/Yggdroot/indentLine/issues/29
+let g:indentLine_setConceal = 0
+
+"Plugin 'robertbasic/vim-hugo-helper'
 
 "Plugin 'szymonmaszke/vimpyter'
+"Plugin 'jupyter-vim/jupyter-vim'
+
 Plugin 'previm/previm.git'
 let g:previm_open_cmd = 'google-chrome-stable'
 
@@ -73,8 +78,7 @@ set tw=79
 hi Comment ctermfg=cyan guifg=cyan cterm=NONE
 
 set cursorcolumn
-highlight CursorColumn ctermbg=Red
-hi CursorColumn ctermfg=Grey ctermbg=Grey cterm=underline guifg=white guibg=yellow gui=underline
+hi CursorColumn ctermfg=Grey ctermbg=black cterm=underline guifg=white guibg=yellow gui=underline
 
 set background=dark
 if has("terminfo")
@@ -104,22 +108,23 @@ au BufNewFile,BufRead *.toml        set ft=toml syntax=toml " FIXME necessary?
 au BufNewFile,BufRead *.textgrid    set ft=praat syntax=praat
 au BufNewFile,BufRead *.TextGrid    set ft=praat syntax=praat
 au BufNewFile,BufRead *.csv         set tw=0
+au BufNewFile,BufRead *.html        set autoindent
 " ou ainda,  se for um arquivo  de um tipo  já reconhecido pelo vim, use
 " diretamente a opção FileType. 
 "
 au FileType python  set foldmethod=indent foldnestmax=6 autoindent
 au FileType python  hi pythonString ctermfg=darkgreen
-au FileType html    set autoindent tw=0 ts=2 sw=2
+au FileType html    set tw=0 ts=2 sw=2 autoindent
 au FileType bib     set tw=0
 au FileType praat   set foldmethod=indent foldnestmax=6 autoindent
-au FileType tex     set autoindent spell
+au FileType tex     set spell autoindent
 au FileType tex     syntax spell toplevel
 
 "au FileType markdown call SyntaxRange#Include('<!--begin=html-->','<!--end=html-->','html')
 
 set expandtab
 
-" https://superuser.com/questions/208177/vim-and-tex-filetypes-plaintex-vs-tex
+"https://superuser.com/questions/208177/vim-and-tex-filetypes-plaintex-vs-tex
 let g:tex_flavor = "latex"
 
 " https://vi.stackexchange.com/questions/5851/how-to-disable-arrow-keys-in-vim
