@@ -1,41 +1,41 @@
-Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
+Config { font = "xft:Bitstream Vera Sans Mono:size=10:antialias=true"
        , bgColor = "black"
        , fgColor = "grey"
-       , position = TopW L 99
+       , position = TopW L 100
        , commands = [ Run StdinReader
                     , Run Locks
                     , Run MultiCpu ["-t", "CPU: <total0>% <total1>% <total2>% <total3>%",
                                "-L","3",
                                "-H","50",
                                "--normal","green",
-                               "--high","red"] 10
-                    , Run Memory ["-t","RAM: <usedratio>% <usedbar>",
+                               "--high","red"] 50
+                    , Run Memory ["-t","RAM: <usedratio>%",
                                   "-L", "1000",
                                   "-H", "10000",
                                   "--low","green",
                                   "--normal","yellow",
-                                  "--high","red"] 10
+                                  "--high","red"] 50
                     , Run DynNetwork ["-t","<dev>: <rx>kB/s <tx>kB/s",
                                       "-L","50000",  -- in bytes per sec
                                       "-H","900000", -- in bytes per sec
                                       "--low","green",
                                       "--normal","yellow",
-                                      "--high","red"] 12
+                                      "--high","red"] 50
                     , Run Brightness ["-t","Bright: <percent>%", 
                                       "--", "-D","intel_backlight"] 15
-                    , Run Volume "default" "Master" ["-t","Vol: <volume>% <volumebar>",
+                    , Run Volume "default" "Master" ["-t","Vol: <volume>%",
                                                      "-H","80",
                                                      "-L","15",
                                                      "--low","lightblue",
                                                      "--normal","grey",
-                                                     "--high","red"] 20
+                                                     "--high","red"] 50
                     , Run Weather "SBBE" ["-t","<tempC>C <windKmh>km/h <skyCondition>",
-                                          "-L","64",
-                                          "-H","77",
-                                          "--normal","green",
+                                          "-L","24",
+                                          "-H","29",
+                                          "--normal","gray",
                                           "--high","red",
                                           "--low","lightblue"] 18000
-                    , Run Date "%a %d %b %T (%V)" "date" 10
+                    , Run Date "%a %d %b %T (%V)" "date" 50
                     , Run BatteryP ["BAT0"]
                                     ["-t", "Bat: <acstatus><left>% (<timeleft>)",
                                     "-L", "10",
