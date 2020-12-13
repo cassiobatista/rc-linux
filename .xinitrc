@@ -1,4 +1,5 @@
-xscreensaver -no-splash &
+#xscreensaver -no-splash &
 setxkbmap -layout br &
-feh --bg-scale /home/cassio/git-casso/dotfiles/.wallpapers/vangogh_tardis.jpg &
-exec xmonad
+feh --bg-scale $HOME/git-casso/dotfiles/.wallpapers/vangogh_tardis.jpg &
+xrdb -merge $HOME/.Xresources &
+xmonad --recompile && exec xmonad
