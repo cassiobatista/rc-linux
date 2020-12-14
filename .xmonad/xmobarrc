@@ -1,90 +1,99 @@
--- weather:
--- https://www.faa.gov/air_traffic/weather/asos
--- http://forecast.weather.gov/MapClick.php?textField1=47.66&textField2=-122.35#.WIjEN0fytec
---, additionalFonts    = ["xft:Raleway:size=12:antialias=true:hinting=true", "xft:Inconsolata for Powerline:size=12:antialias=true:hinting=true"]
-
--- yay -S ttf-font-awesome-4
+-- https://fontawesome.com/v4.7.0/cheatsheet/
+-- https://www.nerdfonts.com/cheat-sheet
 
 Config
-    { font                  = "xft:Bitstream Vera Sans Mono:size=10:antialias=true"
-    , additionalFonts       = [ "xft:FontAwesome:pixelsize=13:antialias=true:hinting=true" ]
-    , allDesktops           = False
-    , bgColor               = "#000000"
-    , fgColor               = "#aaaaaa"
-    , alpha                 = 100
-    , overrideRedirect      = True
-    , iconRoot              = "/home/cassio/.xmonad/icons/"
-    , commands              = [
+    { font              = "xft:Bitstream Vera Sans Mono:size=10:antialias=true" -- ttf-dejavu
+    , additionalFonts   = [
+          "xft:FontAwesome:pixelsize=13:antialias=true:hinting=true" -- ttf-font-awesome-4 (aur)
+        , "xft:Symbols Nerd Font:pixelsize=14:antialias=true"        -- ttf-nerd-fonts-symbols (community)
+        ]
+    , allDesktops       = False
+    , bgColor           = "#000000"
+    , fgColor           = "#aaaaaa"
+    , alpha             = 100
+    , overrideRedirect  = True
+    , iconRoot          = "/home/cassio/.xmonad/icons/"
+    , commands          = [
           Run StdinReader
         , Run Locks
         , Run MultiCpu
-            [ "-t",         "<fn=1>\xf2db</fn> <total>%"
-            --, "-p",         "2"
-            , "-L",         "40"
-            , "-H",         "60"
-            , "--low",      "#586e75"
-            , "--high",     "#dc322f" -- red
+            [ "-t",                         "<fn=2>\xe266</fn> <autovbar>" -- nf-mdi-memory
+            , "-L",                         "40"
+            , "-H",                         "70"
+            , "--low",                      "green"
+            , "--normal",                   "yellow"
+            , "--high",                     "red"
             ] 10
         , Run Memory
-            [ "-t",         "RAM: <usedratio>%"
-            , "-p",         "2"
-            , "--low",      "#586e75"
-            , "--high",     "#268bd2" -- blue, just to differentiate from cpu bar
+            [ "-t",                         "<usedvbar>"
+            , "--low",                      "lightblue"
+            , "--high",                     "lightred"
             ] 10
         , Run DynNetwork
-            [ "-t",         "<fn=1>\xf0ed</fn> <rx>kb <fn=1>\xf0ee</fn> <tx>kb"
-            , "-L",         "500000"  -- in bytes per sec ~500kb
-            , "-H",         "1000000" -- in bytes per sec ~1Mb
-            , "--low",      "green"
-            , "--normal",   "yellow"
-            , "--high",     "red"
+            [ "-t",                         "<fn=1>\xf0ed</fn> <rx>kb <fn=1>\xf0ee</fn> <tx>kb"
+            , "-L",                         "500000"  -- in bytes per sec ~500kb
+            , "-H",                         "1000000" -- in bytes per sec ~1Mb
+            , "--low",                      "green"
+            , "--normal",                   "yellow"
+            , "--high",                     "red"
             ] 50
 
         , Run Brightness
-            [ "-t",         "<fn=1>\xf185</fn> <percent>%"
+            [ "-t",                         "<fn=1>\xf185</fn> <percent>%"
             , "--"
-            , "-D",         "intel_backlight"
+            , "-D",                         "intel_backlight"
             ] 10
         , Run Volume "default" "Master"
-            [ "-t",         "<status>"
-            , "-L",         "15"
-            , "-H",         "80"
-            , "--low",      "cyan"
-            , "--normal",   "#859900"
-            , "--high",     "red"
+            [ "-t",                         "<status>"
+            , "-L",                         "15"
+            , "-H",                         "80"
+            , "--low",                      "cyan"
+            , "--normal",                   "#859900"
+            , "--high",                     "red"
             , "--"
-            , "--on",       "<fc=#859900><fn=1>\xf028</fn></fc> <volume>%"
-            , "--onc",      "#859900"
-            , "--off",      "<fc=#dc322f><fn=1>\xf026</fn> MUTE</fc>"
-            , "--offc",     "#dc322f"
+            , "--on",                       "<fc=#859900><fn=1>\xf028</fn></fc> <volume>%"
+            , "--onc",                      "#859900"
+            , "--off",                      "<fc=#dc322f><fn=1>\xf026</fn> MUTE</fc>"
+            , "--offc",                     "#dc322f"
             ] 10
-        , Run Weather "SBBE"
-            [ "-t",         "<fn=1>\xf2cb</fn> <tempC>° <fn=1>\xf06c</fn> <windKmh> km/h"
-            , "-L",         "24"
-            , "-H",         "30"
-            , "--low",      "cyan"
-            , "--normal",   "grey"
-            , "--high",     "red"
-            ] 36000
+        , Run WeatherX "SBBE"
+            [ ("clear",                     "<fn=2>\xe30d</fn>")   -- e30d nf-weather-day_sunny
+            , ("sunny",                     "<fn=2>\xe30d</fn>")   -- e30d nf-weather-day_sunny
+            , ("mostly clear",              "<fn=2>\xe302</fn>")   -- e302 nf-weather-day_cloudy
+            , ("mostly sunny",              "<fn=2>\xe302</fn>")   -- e302 nf-weather-day_cloudy
+            , ("partly sunny",              "<fn=2>\xe302</fn>")   -- e302 nf-weather-day_cloudy
+            , ("fair",                      "<fn=2>\xe39b</fn>")   -- e39b nf-weather-moon_full ??
+            , ("overcast",                  "<fn=2>\xe312</fn>")   -- e312 nf-weather-cloudy
+            , ("cloudy",                    "<fn=2>\xe312</fn>")   -- e312 nf-weather-cloudy
+            , ("partly cloudy",             "<fn=2>\xe302</fn>")   -- e302 nf-weather-day_cloudy
+            , ("mostly cloudy",             "<fn=2>\xe318</fn>")   -- e318 nf-weather-rain
+            , ("considerable cloudiness",   "<fn=2>\xe31d</fn>") ] -- e31d nf-weather-thunderstorm
+            [ "-t",                         "<fn=1>\xf2cb</fn> <tempC>° <skyConditionS> <windKmh> km/h"
+            , "-L",                         "24"
+            , "-H",                         "30"
+            , "--low",                      "cyan"
+            , "--normal",                   "grey"
+            , "--high",                     "red"
+            ] 18000
         , Run Date "<fc=#268bd2><fn=1>\xf073</fn> %a %d %b (%V)</fc> <fc=#2AA198><fn=1>\xf017</fn> %T</fc>" "date" 10
         , Run Battery
-            [ "-t",         "<fc=#b58900><acstatus></fc>"
-            , "-L",         "20"
-            , "-H",         "85"
-            , "-l",         "#dc322f"
-            , "-n",         "#b58900"
-            , "-h",         "#b58900"
+            [ "-t",                         "<fc=#b58900><acstatus></fc>"
+            , "-L",                         "20"
+            , "-H",                         "85"
+            , "--low",                      "#dc322f"
+            , "--normal",                   "#b58900"
+            , "--high",                     "#b58900"
             , "--" -- battery specific options
-            , "-o",                 "<fn=1>\xf242</fn> <left>% (<timeleft>)" -- discharging status
-            , "-O",                 "<fn=1>\xf1e6</fn> <left>%"              -- AC "on" status
-            , "-i",                 "<fn=1>\xf1e6</fn> <left>%"              -- charged status
-            , "--off-icon-pattern", "<fn=1>\xf1e6</fn>"
-            , "--on-icon-pattern",  "<fn=1>\xf1e6</fn>"
+            , "-o",                         "<fn=1>\xf242</fn> <left>% (<timeleft>)" -- discharging status
+            , "-O",                         "<fn=1>\xf1e6</fn> <left>%"              -- AC "on" status
+            , "-i",                         "<fn=1>\xf1e6</fn> <left>%"              -- charged status
+            , "--off-icon-pattern",         "<fn=1>\xf1e6</fn>"
+            , "--on-icon-pattern",          "<fn=1>\xf1e6</fn>"
             ] 50
         ]
-        , sepChar           = "%"
-        , alignSep          = "}{"
-        , template          = " <icon=haskell_20.xpm/> %StdinReader% }{ [%locks%] | %multicpu% | %memory% | %dynnetwork% | %bright% | %default:Master% | %SBBE% | %date% | %battery% "
+        , sepChar            = "%"
+        , alignSep           = "}{"
+        , template           = " <icon=haskell_20.xpm/> %StdinReader% }{ [%locks%] | %multicpu% %memory% | %dynnetwork% | %bright% | %default:Master% | %SBBE% | %date% | %battery% "
     }
 
 -- not really haskell, but close enough
