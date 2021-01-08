@@ -22,7 +22,8 @@ XTerm*foreground:  White
 URxvt*depth:       32
 URxvt*background:  Black
 URxvt*foreground:  White
-URxvt.font:        xft:bitstream vera sans mono:size=9:antialias=true
+!URxvt.font:        xft:bitstream vera sans mono:size=12:antialias=true
+URxvt.font:        xft:DejaVu Sans Mono for Powerline:size=12:antialias=true
 URxvt.scrollBar: false
 URxvt.cursorBlink: true
 URxvt*inheritPixmap: true

@@ -52,9 +52,6 @@ let g:airline_symbols.linenr = ''
 
 Plugin 'preservim/nerdtree'
 
-Plugin 'previm/previm.git'
-let g:previm_open_cmd = 'google-chrome-stable'
-
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
