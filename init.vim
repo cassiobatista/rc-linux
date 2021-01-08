@@ -9,13 +9,48 @@ call vundle#begin('~/.config/.nvim/bundle')
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
-Plugin 'Yggdroot/indentLine'
-let g:indentLine_setConceal = 0
+" NOTE:
+"   - install nodejs and yarn
+"   - go to bundle/markdown-previm.vim/app and to 'yarn install'
+"   - do :call mkdp#util#install() om vim
+"   - call PluginInstall
+Plugin 'iamcco/markdown-preview.nvim'
+let g:mkdp_browser='google-chrome-stable'
 
-"Plugin 'robertbasic/vim-hugo-helper'
+" Plugin 'ycm-core/YouCompleteMe'
 
-"Plugin 'szymonmaszke/vimpyter'
-"Plugin 'jupyter-vim/jupyter-vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" airline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+Plugin 'preservim/nerdtree'
 
 Plugin 'previm/previm.git'
 let g:previm_open_cmd = 'google-chrome-stable'
@@ -115,6 +150,8 @@ au BufNewFile,BufRead *.html        set autoindent
 au FileType python  set foldmethod=indent foldnestmax=6 autoindent
 au FileType python  hi pythonString ctermfg=darkgreen
 au FileType html    set tw=0 ts=2 sw=2 autoindent
+au FileType bash    set tw=0 ts=2 sw=2 noautoindent
+au FileType sh      set tw=0 ts=2 sw=2 noautoindent
 au FileType bib     set tw=0
 au FileType praat   set foldmethod=indent foldnestmax=6 autoindent
 au FileType tex     set spell autoindent
