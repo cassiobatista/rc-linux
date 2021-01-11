@@ -13,7 +13,10 @@ Before using `config.sh`, install the following packages as root:
 
 ### GRUB
 
-```bash
+:warning: don't forget to select UEFI instead of legacy when switching to boot
+from flash drive
+
+```text
 # pacman -S grub efibootmgr
 # grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 # grub-mkconfig -o /boot/grub/grub.cfg
