@@ -3,10 +3,10 @@
 -- https://tgftp.nws.noaa.gov/weather/current/SBBE.html
 
 Config
-    { font              = "xft:Bitstream Vera Sans Mono:size=10:antialias=true" -- ttf-dejavu
+    { font              = "xft:Bitstream Vera Sans Mono:size=12:antialias=true" -- ttf-dejavu
     , additionalFonts   = [
-          "xft:FontAwesome:pixelsize=13:antialias=true:hinting=true" -- ttf-font-awesome-4 (aur)
-        , "xft:Symbols Nerd Font:pixelsize=14:antialias=true"        -- ttf-nerd-fonts-symbols (community)
+          "xft:FontAwesome:pixelsize=16:antialias=true:hinting=true" -- ttf-font-awesome-4 (aur)
+        , "xft:Symbols Nerd Font:pixelsize=16:antialias=true"        -- ttf-nerd-fonts-symbols (community)
         ]
     , allDesktops       = False
     , bgColor           = "#000000"
@@ -30,6 +30,14 @@ Config
             , "--low",                      "lightblue"
             , "--high",                     "lightred"
             ] 10
+        , Run Wireless ""  -- nf-fa-wifi
+            [ "-t",                         "<fc=#268bd2><fn=2>\xf1eb</fn> <ssid></fc> (<quality>%)"
+            , "-L",                         "30"
+            , "-H",                         "80"
+            , "--low",                      "red"
+            , "--normal",                   "yellow"
+            , "--high",                     "green"
+            ] 50
         , Run DynNetwork
             [ "-t",                         "<fn=1>\xf0ed</fn> <rx>kb <fn=1>\xf0ee</fn> <tx>kb"
             , "-L",                         "500000"  -- in bytes per sec ~500kb
@@ -69,7 +77,7 @@ Config
             , ("partly cloudy",             "<fn=2>\xe302</fn>")   -- e302 nf-weather-day_cloudy
             , ("mostly cloudy",             "<fn=2>\xe318</fn>")   -- e318 nf-weather-rain
             , ("considerable cloudiness",   "<fn=2>\xe31d</fn>") ] -- e31d nf-weather-thunderstorm
-            [ "-t",                         "<fn=1>\xf2cb</fn> <tempC>° <skyConditionS> <windKmh> km/h"
+            [ "-t",                         "<skyConditionS> <tempC>°"
             , "-L",                         "24"
             , "-H",                         "30"
             , "--low",                      "cyan"
@@ -94,7 +102,7 @@ Config
         ]
         , sepChar            = "%"
         , alignSep           = "}{"
-        , template           = " <icon=haskell_20.xpm/> %StdinReader% }{ [%locks%] | %multicpu% %memory% | %dynnetwork% | %bright% | %default:Master% | %SBBE% | %date% | %battery% "
+        , template           = " <icon=haskell_20.xpm/> %StdinReader% }{ [%locks%] | %wi% %dynnetwork% | %multicpu% %memory% | %bright% | %default:Master% | %SBBE% | %battery% "
     }
 
 -- not really haskell, but close enough

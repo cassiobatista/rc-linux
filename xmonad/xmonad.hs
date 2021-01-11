@@ -26,7 +26,7 @@ main = do
         , modMask = mod4Mask
         , terminal = "urxvt -e tmux"
         , borderWidth = 1
-        , focusedBorderColor = "#FF0000"
+        , focusedBorderColor = "#00FFFF"
         } `additionalKeys`
         [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock")                     -- lock screen
         , ((shiftMask, xK_Print         ), spawn "sleep 0.2 && scrot -o /tmp/00.png -q 100 -p -s") -- screenshot
