@@ -17,6 +17,17 @@ Config
     , commands          = [
           Run StdinReader
         , Run Locks
+        , Run MultiCoreTemp
+            [ "-t",                         "<fn=1>\xf2c7</fn> <max>° (<maxpc>%)" -- fa-thermometer-full
+            , "-L",                         "40"
+            , "-H",                         "65"
+            , "--low",                      "cyan"
+            , "--normal",                   "grey"
+            , "--high",                     "red"
+            , "--"
+            , "--mintemp",                  "30"
+            , "--maxtemp",                  "80"
+            ] 50
         , Run MultiCpu
             [ "-t",                         "<fn=2>\xe266</fn> <autovbar>" -- nf-mdi-memory
             , "-L",                         "40"
@@ -30,6 +41,10 @@ Config
             , "--low",                      "lightblue"
             , "--high",                     "lightred"
             ] 10
+        , Run Com "sh"  -- nf-mdl-lan_connect, nf-mdl-lan_disconnect
+            [ "-c"
+            , "ip a show ppp0 > /dev/null 2>&1 && echo '<fc=#00ff00><fn=2>\xf817</fn></fc>' || echo '<fc=#ff0000><fn=2>\xf818</fn></fc>'"
+            ] "vpn" 50
         , Run Wireless ""  -- nf-fa-wifi
             [ "-t",                         "<fc=#268bd2><fn=2>\xf1eb</fn> <ssid></fc> (<quality>%)"
             , "-L",                         "30"
@@ -46,7 +61,6 @@ Config
             , "--normal",                   "yellow"
             , "--high",                     "red"
             ] 50
-
         , Run Brightness
             [ "-t",                         "<fn=1>\xf185</fn> <percent>%"
             , "--"
@@ -84,7 +98,7 @@ Config
             , "--normal",                   "grey"
             , "--high",                     "red"
             ] 18000
-        , Run Date "<fc=#268bd2><fn=1>\xf073</fn> %a %d %b (%V)</fc> <fc=#2AA198><fn=1>\xf017</fn> %T</fc>" "date" 10
+        , Run Date "<fc=#268bd2><fn=1>\xf073</fn> %a %d %b</fc> <fc=#2AA198><fn=1>\xf017</fn> %H:%M</fc>" "date" 10
         , Run Battery
             [ "-t",                         "<fc=#b58900><acstatus></fc>"
             , "-L",                         "20"
@@ -93,16 +107,16 @@ Config
             , "--normal",                   "#b58900"
             , "--high",                     "#b58900"
             , "--" -- battery specific options
-            , "-o",                         "<fn=1>\xf242</fn> <left>% (<timeleft>)" -- discharging status
-            , "-O",                         "<fn=1>\xf1e6</fn> <left>%"              -- AC "on" status
-            , "-i",                         "<fn=1>\xf1e6</fn> <left>%"              -- charged status
+            , "-o",                         "<fn=1>\xf242</fn> <left>%" -- discharging status
+            , "-O",                         "<fn=1>\xf1e6</fn> <left>%" -- AC "on" status
+            , "-i",                         "<fn=1>\xf1e6</fn> <left>%" -- charged status
             , "--off-icon-pattern",         "<fn=1>\xf1e6</fn>"
             , "--on-icon-pattern",          "<fn=1>\xf1e6</fn>"
             ] 50
         ]
         , sepChar            = "%"
         , alignSep           = "}{"
-        , template           = " <icon=haskell_20.xpm/> %StdinReader% }{ [%locks%] | %wi% %dynnetwork% | %multicpu% %memory% | %bright% | %default:Master% | %SBBE% | %battery% "
+        , template           = "<icon=haskell_20.xpm/> %StdinReader% }{ [%locks%] | %vpn% %wi% %dynnetwork% | %multicoretemp% %multicpu% %memory% | %bright% | %default:Master% | %date% | %SBBE% | %battery%"
     }
 
 -- not really haskell, but close enough
