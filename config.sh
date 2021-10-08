@@ -29,24 +29,29 @@ cp -rv xmonad/xmobarrc  $HOME/.config/xmobar
 sudo pacman -S --needed \
   xorg xorg-drivers xorg-xinit \
   nvidia cuda cudnn bumblebee \
-  evince libreoffice-still texlive-bin texlive-core texlive-latexextra \
+  jdk-openjdk jre-openjdk \
+  evince libreoffice-still diffpdf pdftk \
+  texlive-bin texlive-core texlive-latexextra \
+  texlive-bibtexextra texlive-fontsextra texlive-pictures \
   xmonad xmonad-contrib xmobar \
-  ttf-dejavu ttf-nerd-fonts-symbols \
-  alsa-tools alsa-utils sox pavucontrol ffmpeg mpv \
+  ttf-dejavu ttf-nerd-fonts-symbols noto-fonts-emoji \
+  alsa-tools alsa-utils portaudio sox pavucontrol ffmpeg mpv \
   rxvt-unicode zsh tmux \
   hplip xsane cups \
   nodejs yarn powerline python-pynvim \
-  firefox wget ntfs-3g htop scrot dunst conky libnotify \
+  firefox wget ntfs-3g htop scrot dunst conky libnotify dmidecode \
+  gimp mediainfo imagemagick \
   lolcat cowsay fortune-mod \
-  python-numpy python-matplotlib python-scipy python-scikit-learn ipython
+  python-numpy python-matplotlib python-scipy python-scikit-learn ipython tk
 
 # aur
 yay -S \
   google-chrome dropbox \
   ttf-dejavu-sans-mono-powerline-git ttf-font-awesome-4 ttf-ms-fonts \
-  abntex2 warsaw-bin
+  urxvt-resize-font-git \
+  foxitreader abntex2 warsaw-bin
 
-yay -S gcc8 gcc8-fortran gcc8-libs  # separated bc it takes a fucking while
+yay -S gcc8 gcc8-fortran gcc8-libs  # separated 'cause it takes a fckng while
 
 # oh my zsh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"

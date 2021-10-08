@@ -21,3 +21,7 @@ from flash drive
 # grub-install --target=x86_64-efi --efi-directory=/efi --bootloader-id=GRUB
 # grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+### libinput
+
+- disable touchpad while typing on Dell: https://bbs.archlinux.org/viewtopic.php?id=240488

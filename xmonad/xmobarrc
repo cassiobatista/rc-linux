@@ -2,6 +2,13 @@
 -- https://www.nerdfonts.com/cheat-sheet
 -- https://tgftp.nws.noaa.gov/weather/current/SBBE.html
 
+-- TODO add music icons (fn=1)
+-- pacmd list-sink-inputs
+-- fa-stop-circle-o [&#xf28e;]          fa-stop-circle [&#xf28d;]
+-- fa-pause-circle-o [&#xf28c;]         fa-pause-circle [&#xf28b;]
+-- fa-play-circle-o [&#xf01d;]          fa-play-circle [&#xf144;]
+
+
 Config
     { font              = "xft:Bitstream Vera Sans Mono:size=12:antialias=true" -- ttf-dejavu
     , additionalFonts   = [
@@ -18,11 +25,11 @@ Config
           Run StdinReader
         , Run Locks
         , Run MultiCoreTemp
-            [ "-t",                         "<fn=1>\xf2c7</fn> <max>° (<maxpc>%)" -- fa-thermometer-full
-            , "-L",                         "40"
-            , "-H",                         "65"
+            [ "-t",                         "<fc=#e59b37><fn=1>\xf134</fn></fc> <max>°" -- fa-thermometer-full
+            , "-L",                         "60"
+            , "-H",                         "80"
             , "--low",                      "cyan"
-            , "--normal",                   "grey"
+            , "--normal",                   "yellow"
             , "--high",                     "red"
             , "--"
             , "--mintemp",                  "30"
@@ -41,10 +48,6 @@ Config
             , "--low",                      "lightblue"
             , "--high",                     "lightred"
             ] 10
-        , Run Com "sh"  -- nf-mdl-lan_connect, nf-mdl-lan_disconnect
-            [ "-c"
-            , "ip a show ppp0 > /dev/null 2>&1 && echo '<fc=#00ff00><fn=2>\xf817</fn></fc>' || echo '<fc=#ff0000><fn=2>\xf818</fn></fc>'"
-            ] "vpn" 50
         , Run Wireless ""  -- nf-fa-wifi
             [ "-t",                         "<fc=#268bd2><fn=2>\xf1eb</fn> <ssid></fc> (<quality>%)"
             , "-L",                         "30"
@@ -61,6 +64,10 @@ Config
             , "--normal",                   "yellow"
             , "--high",                     "red"
             ] 50
+        , Run Com "sh"  -- nf-mdl-lan_connect, nf-mdl-lan_disconnect
+            [ "-c"
+            , "ip a show ppp0 > /dev/null 2>&1 && echo '<fc=#00ff00><fn=2>\xf817</fn></fc>' || echo '<fc=#ff0000><fn=2>\xf818</fn></fc>'"
+            ] "vpn" 50
         , Run Brightness
             [ "-t",                         "<fn=1>\xf185</fn> <percent>%"
             , "--"
@@ -116,7 +123,7 @@ Config
         ]
         , sepChar            = "%"
         , alignSep           = "}{"
-        , template           = "<icon=haskell_20.xpm/> %StdinReader% }{ [%locks%] | %vpn% %wi% %dynnetwork% | %multicoretemp% %multicpu% %memory% | %bright% | %default:Master% | %date% | %SBBE% | %battery%"
+        , template           = "<icon=haskell_20.xpm/> %StdinReader% }{ [%locks%] | %wi% %dynnetwork% %vpn% | %multicoretemp% %multicpu% %memory% | %bright% | %default:Master% | %date% | %SBBE% | %battery%"
     }
 
 -- not really haskell, but close enough
