@@ -29,15 +29,16 @@ sudo pacman -S --needed \
   xorg xorg-xinit xorg-apps xscreensaver numlockx \
   xf86-video-intel xf86-video-fbdev xf86-input-libinput \
   jdk-openjdk jre-openjdk \
-  evince libreoffice-still diffpdf pdftk \
+  evince libreoffice-still diffpdf pdftk zathura zathura-pdf-poppler \
   texlive-bin texlive-core texlive-latexextra \
   texlive-bibtexextra texlive-fontsextra texlive-pictures \
   xmonad xmonad-contrib xmobar dmenu \
   ttf-dejavu ttf-nerd-fonts-symbols noto-fonts-emoji \
   awesome-terminal-fonts powerline python-powerline \
-  alsa-tools alsa-utils portaudio sox pavucontrol playerctl ffmpeg mpv cmus \
+  alsa-tools alsa-utils sox ffmpeg portaudio pulseaudio pulseaudio-bluetooth pavucontrol \
+  mpv cmus mpd mpc playerctl \
   rxvt-unicode zsh tmux subversion gcc-fortran \
-  hplip xsane cups \
+  hplip xsane cups bluez bluez-utils bluez-libs \
   nodejs yarn python-pynvim \
   firefox unzip wget ntfs-3g lshw rsync openssh htop tree scrot dunst conky libnotify dmidecode mlocate \
   gimp mediainfo imagemagick feh \

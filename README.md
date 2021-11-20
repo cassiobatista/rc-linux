@@ -30,3 +30,5 @@ from flash drive
   working with xorg server.
 - `xinput (list | list-props | set-prop)` does all the work that would have
   been messy via config files under `/usr/share/X11/xorg.conf.d/`
+- `localectl` may be a nice option for system-wise kbd locale config: 
+  https://wiki.archlinux.org/title/Xorg/Keyboard_configuration

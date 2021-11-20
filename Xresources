@@ -31,7 +31,7 @@ URxvt*transparent: true
 URxvt*shading: 15
 
 
-URxvt.perl-ext-common: clipboard,selection-to-clipboard
+URxvt.perl-ext-common: clipboard,selection-to-clipboard,resize-font
 URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
 !URxvt.clipboard.autocopy: true
