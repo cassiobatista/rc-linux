@@ -10,10 +10,10 @@
 
 
 Config
-    { font              = "xft:Bitstream Vera Sans Mono:size=12:antialias=true" -- ttf-dejavu
+    { font              = "xft:Bitstream Vera Sans Mono:size=10:antialias=true" -- ttf-dejavu
     , additionalFonts   = [
-          "xft:FontAwesome:pixelsize=16:antialias=true:hinting=true" -- ttf-font-awesome-4 (aur)
-        , "xft:Symbols Nerd Font:pixelsize=16:antialias=true"        -- ttf-nerd-fonts-symbols (community)
+          "xft:FontAwesome:pixelsize=12:antialias=true:hinting=true" -- ttf-font-awesome-4 (aur)
+        , "xft:Symbols Nerd Font:pixelsize=12:antialias=true"        -- ttf-nerd-fonts-symbols (community)
         ]
     , allDesktops       = False
     , bgColor           = "#000000"
@@ -36,7 +36,7 @@ Config
             , "--maxtemp",                  "80"
             ] 50
         , Run MultiCpu
-            [ "-t",                         "<fn=2>\xe266</fn> <autovbar>" -- nf-mdi-memory
+            [ "-t",                         "<vbar>" -- nf-mdi-memory <fn=2>\xe266</fn> 
             , "-L",                         "40"
             , "-H",                         "70"
             , "--low",                      "green"
@@ -66,7 +66,7 @@ Config
             ] 50
         , Run Com "sh"  -- nf-mdl-lan_connect, nf-mdl-lan_disconnect
             [ "-c"
-            , "ip a show ppp0 > /dev/null 2>&1 && echo '<fc=#00ff00><fn=2>\xf817</fn></fc>' || echo '<fc=#ff0000><fn=2>\xf818</fn></fc>'"
+            , "{ ip a show ppp0 > /dev/null 2>&1 || ip a show tun0 > /dev/null 2>&1 ; } && echo '<fc=#00ff00><fn=2>\xf817</fn></fc>' || echo '<fc=#ff0000><fn=2>\xf818</fn></fc>'"
             ] "vpn" 50
         , Run Brightness
             [ "-t",                         "<fn=1>\xf185</fn> <percent>%"
@@ -123,7 +123,7 @@ Config
         ]
         , sepChar            = "%"
         , alignSep           = "}{"
-        , template           = "<icon=haskell_20.xpm/> %StdinReader% }{ [%locks%] | %wi% %dynnetwork% %vpn% | %multicoretemp% %multicpu% %memory% | %bright% | %default:Master% | %date% | %SBBE% | %battery%"
+        , template           = "<icon=haskell_20.xpm/> %StdinReader% }{ [%locks%] %wi% %dynnetwork% %vpn% %multicoretemp% %multicpu% %memory% %bright% %default:Master% %date% %SBBE% %battery%"
     }
 
 -- not really haskell, but close enough
